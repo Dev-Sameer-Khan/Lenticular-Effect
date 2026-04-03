@@ -1,9 +1,6 @@
 import {
-  Center,
   Environment,
   OrbitControls,
-  Text,
-  Text3D,
   useTexture,
 } from "@react-three/drei";
 import { useMemo } from "react";
@@ -18,6 +15,18 @@ import {
   negate,
   texture,
 } from "three/tsl";
+import { MeshStandardNodeMaterial } from 'three/webgpu';
+import { extend } from '@react-three/fiber';
+import type { ThreeElement } from '@react-three/fiber'
+
+extend({ MeshStandardNodeMaterial });
+
+
+declare module '@react-three/fiber' {
+  interface ThreeElements {
+    meshStandardNodeMaterial: ThreeElement<typeof MeshStandardNodeMaterial>
+  }
+}
 
 export const Experience = () => {
   // Load textures
