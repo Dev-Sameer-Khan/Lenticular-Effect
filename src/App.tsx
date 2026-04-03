@@ -25,12 +25,13 @@ function App() {
       <Canvas
         shadows
         camera={{ position: [0, 0, 2], fov: 75 }}
-        gl={(canvas: any) => {
+        gl={async (canvas: any) => {
           const renderer = new THREE.WebGPURenderer({ 
             canvas: canvas instanceof HTMLCanvasElement ? canvas : canvas.canvas,
             antialias: true,
             powerPreference: 'high-performance' as GPUPowerPreference 
           });
+          await renderer.init();
           return renderer;
         }}
       >
